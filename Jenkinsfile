@@ -25,7 +25,7 @@ node {
     	]
       ])
      {
-	sh '/usr/local/bin/docker-machine rm --froce -y'
+	sh "/usr/local/bin/docker-machine rm --force -y ${aws-test-nginx}"
         sh "/usr/local/bin/docker-machine create --driver amazonec2 --amazonec2-open-port 80 --amazonec2-region eu-west-2 --amazonec2-access-key ${amazonec2_access_key} --amazonec2-secret-key ${amazonec2_secret_key} ${manchineName}"
         
 	String listMachines = sh returnStdout: true, script: '/usr/local/bin/docker-machine ls'
