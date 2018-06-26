@@ -9,6 +9,7 @@ node {
    }
    stage('Deploy') {
       docker.withServer('tcp://172.31.2.216:4243') {
+            sh 'docker-machine create --driver amazonec2 aws-test-nginx'
             sh returnStatus: true, script: 'docker stop test-nginx'
             sh returnStatus: true, script: 'docker rm test-nginx'
             sh 'docker run -d --name test-nginx -p 80:80 apavlov123/test-nginx:latest'
