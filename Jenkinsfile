@@ -36,8 +36,8 @@ node {
 		println "Deploying container ${conatinerName} to ${manchineName}"
 		//docker.withServer("tcp://172.31.2.216:4243') {
 		sh "/usr/local/bin/docker-machine ssh ${manchineName}"
-	     	//sh returnStatus: true, script: "docker stop ${conatinerName}"
-             	//sh returnStatus: true, script: "docker rm ${conatinerName}"
+	     	sh returnStatus: true, script: "docker stop ${conatinerName}"
+             	sh returnStatus: true, script: "docker rm ${conatinerName}"
 	     	sh "docker run -d --name ${conatinerName} -p 80:80 ${imageName}:latest"
       		//}
 	} else {
